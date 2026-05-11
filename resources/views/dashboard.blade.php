@@ -10,7 +10,7 @@
 
 <body class="bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100 min-h-screen">
 
-    <!-- Top Navbar -->
+    <!-- Navbar -->
     <nav class="bg-gradient-to-r from-indigo-900 to-blue-800 px-8 py-5 shadow-xl">
 
         <div class="max-w-7xl mx-auto flex items-center justify-between">
@@ -26,26 +26,30 @@
                 </p>
             </div>
 
-            <!-- User -->
+            <!-- User Info -->
             <div class="flex items-center gap-4">
-{{-- 
-                <img src="{{ auth()->user()->avatar }}"
-                     class="w-12 h-12 rounded-full border-2 border-white shadow-lg"> --}}
+
+                <img src="{{ session('user.avatar') }}"
+                     class="w-12 h-12 rounded-full border-2 border-white shadow-lg">
 
                 <div class="text-right">
+
                     <h3 class="text-white font-semibold">
-                        {{ auth()->user()->name }}
+                        {{ session('user.name') }}
                     </h3>
 
                     <p class="text-blue-100 text-sm">
-                        {{ auth()->user()->email }}
+                        {{ session('user.email') }}
                     </p>
+
                 </div>
 
                 <!-- Logout -->
                 <a href="{{ url('/logout') }}"
                    class="bg-white text-indigo-700 px-4 py-2 rounded-xl font-semibold hover:bg-indigo-50 transition duration-300 shadow-md">
+
                     Logout
+
                 </a>
 
             </div>
@@ -54,10 +58,10 @@
 
     </nav>
 
-    <!-- Main Content -->
+    <!-- Main -->
     <div class="max-w-7xl mx-auto px-6 py-10">
 
-        <!-- Welcome Card -->
+        <!-- Welcome -->
         <div class="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100 mb-8">
 
             <div class="flex items-center justify-between flex-wrap gap-6">
@@ -65,7 +69,7 @@
                 <div>
 
                     <h2 class="text-4xl font-bold text-gray-800 mb-3">
-                        Welcome, {{ auth()->user()->name }} 👋
+                        Welcome, {{ session('user.name') }} 👋
                     </h2>
 
                     <p class="text-gray-500 text-lg">
@@ -82,10 +86,10 @@
 
         </div>
 
-        <!-- Cards -->
+        <!-- Stats -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-            <!-- Balance Card -->
+            <!-- Balance -->
             <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100">
 
                 <p class="text-gray-500 text-sm uppercase tracking-wider">
@@ -158,6 +162,7 @@
                 <div class="flex items-center justify-between border-b pb-4">
 
                     <div>
+
                         <h3 class="font-semibold text-gray-800">
                             Google Login Successful
                         </h3>
@@ -165,6 +170,7 @@
                         <p class="text-gray-500 text-sm">
                             Secure OAuth authentication completed.
                         </p>
+
                     </div>
 
                     <span class="text-green-600 font-medium">
@@ -176,6 +182,7 @@
                 <div class="flex items-center justify-between border-b pb-4">
 
                     <div>
+
                         <h3 class="font-semibold text-gray-800">
                             Session Created
                         </h3>
@@ -183,6 +190,7 @@
                         <p class="text-gray-500 text-sm">
                             User session securely initialized.
                         </p>
+
                     </div>
 
                     <span class="text-blue-600 font-medium">
@@ -194,6 +202,7 @@
                 <div class="flex items-center justify-between">
 
                     <div>
+
                         <h3 class="font-semibold text-gray-800">
                             Banking Security Enabled
                         </h3>
@@ -201,6 +210,7 @@
                         <p class="text-gray-500 text-sm">
                             Multi-layer authentication active.
                         </p>
+
                     </div>
 
                     <span class="text-indigo-600 font-medium">
