@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
@@ -14,40 +13,36 @@ class GoogleController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
-    // Google Callback Function
-    public function callback()
+    // Google Callback
+    public function callback(Request $request)
     {
         try {
 
-            $googleUser = Socialite::driver('google')->stateless()->user();
+            $googleUser = Socialite::driver('google')
+                ->stateless()
+                ->user();
 
-            $user = User::updateOrCreate(
-                [
-                    'email' => $googleUser->email,
-                ],
-                [
+            // Store user data in session
+            session([
+                'user' => [
                     'name' => $googleUser->name,
-                    'google_id' => $googleUser->id,
+                    'email' => $googleUser->email,
                     'avatar' => $googleUser->avatar,
-                    'password' => bcrypt('123456dummy'),
                 ]
-            );
-
-            Auth::login($user);
+            ]);
 
             return redirect('/dashboard');
 
         } catch (\Exception $e) {
 
-            dd($e->getMessage());
-
+            return redirect('/')->with('error', $e->getMessage());
         }
     }
 
     // Logout
     public function logout()
     {
-        Auth::logout();
+        session()->forget('user');
 
         return redirect('/');
     }
