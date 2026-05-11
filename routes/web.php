@@ -14,7 +14,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
 
-    if (!auth()->check()) {
+    if (!session('user')) {
         return redirect('/');
     }
 
